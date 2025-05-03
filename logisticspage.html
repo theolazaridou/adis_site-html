@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Π.Γ. ΝΙΚΑΣ Α.Β.Ε.Ε. - Logistics</title>
+  
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #F8F8FF;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 30px;
+        background-color: #f0f0f0;
+        margin-top: 0;  
+    }
+
+    .center-links {
+      display: flex;
+      gap: 30px;
+    }
+    .center-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    .center-links a.active {
+      color: #f9775b;
+      border-bottom: 2px solid #f9775b;
+      padding-bottom: 5px;
+    }
+    .login-button button {
+      background-color: #f9775b;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .content {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #f9775b;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    form {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: auto;
+      margin-top: 40px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    input:invalid, textarea:invalid {
+      border-color: red;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .error-message {
+      color: red;
+      display: none;
+      margin-top: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #f0f0f0;
+      color: #666;
+      font-size: 0.9em;
+      margin-top: 40px;
+    }
+    .material {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border: 1px solid #939393;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  input {
+    width: 98%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #7a7a7a;
+    border-radius: 5px;
+  }
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #45a049;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  #result {
+    margin-top: 30px;
+    background-color: #f9775b;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  .error-message {
+    color: red;
+    display: none;
+    margin-top: 10px;
+  }
+  </style>
+</head>
+<body>
+  <nav>
+    <img src="https://nikas.gr/wp-content/uploads/2022/10/NIKAS_oval_RGB-1.webp" alt="Λογότυπο της Π.Γ. ΝΙΚΑΣ Α.Β.Ε.Ε." width="145" height="68">
+    <div class="center-links">
+      <a href="homepage.html">Home</a>
+      <a href="logisticspage.html" class = "active"> Logistics</a>
+      <a href="kpi.html">KPIs</a>
+      <a href="RPC.html">RPC</a>
+    </div>
+    <div class="login-button">
+      <a href="loginpage.html">
+        <button>Login</button>
+      </a>
+    </div>
+    </nav>
+    <div class="report-box">
+        <form>
+          <center>
+            <h2>Προγραμματισμός Αποστολής Παραγγελίας <br> (Confirm and Schedule Outbound Deliver)</h2>
+          </center>
+      
+          <label for="name">Όνομα:</label>
+          <input type="text" id="name" name="name" required><br><br>
+      
+          <label for="report-date">Ημερομηνία Report:</label>
+          <input type="date" id="report-date" name="report_date" required><br><br>
+      
+          <label for="product-code">Κωδικός Προϊόντος:</label>
+          <input type="text" id="product-code" name="product_code" required><br><br>
+      
+          <label for="quantity">Ποσότητα Προϊόντος (σε κιλά):</label>
+          <input type="number" id="quantity" name="quantity" min="1" required><br><br>
+      
+          <label for="order-number">Αριθμός Εγκεκριμένης Παραγγελίας:</label>
+          <input type="text" id="order-number" name="approved_order_number" required><br><br>
+      
+          <label for="shipping-date">Ημερομηνία Αποστολής:</label>
+          <input type="date" id="shipping-date" name="shipping_date" required><br><br>
+      
+          <label for="shipping-method">Τρόπος Αποστολής:</label>
+          <input id="shipping-method" name="shipping_method" required><br><br>
+      
+          <button type="submit">Υποβολή</button>
+          <button type="button" onclick="saveReport()">Αποθήκευση</button>
+          <div id="result"></div>
+        </form>
+      </div>
+    
+    <script>
+    function validateForm() {
+      const form = document.querySelector('form');
+      const errorDiv = document.getElementById('error');
+
+      if (!form.checkValidity()) {
+        errorDiv.style.display = 'block';
+        return false;
+      } else {
+        errorDiv.style.display = 'none';
+        alert('Τα δεδομένα καταχωρήθηκαν με επιτυχία!');
+        return true;
+      }
+    }
+    function saveReport() {
+      alert('Το report αποθηκεύτηκε με επιτυχία!');
+    }
+
+    </script>
+  
+  </body>
+  </html>

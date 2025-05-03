@@ -1,0 +1,189 @@
+<html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Π.Γ. ΝΙΚΑΣ Α.Β.Ε.Ε. - KPIs Παραγωγής</title>
+  
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #F8F8FF;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 30px;
+      background-color: #f0f0f0;
+    }
+    .center-links {
+      display: flex;
+      gap: 30px;
+    }
+    .center-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    .center-links a.active {
+      color: #f9775b;
+      border-bottom: 2px solid #f9775b;
+      padding-bottom: 5px;
+    }
+    .login-button button {
+      background-color: #f9775b;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .content {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-top: 40px;
+    }
+    h1 {
+      color: #f9775b;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    form {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    input:invalid, textarea:invalid {
+      border-color: red;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .error-message {
+      color: red;
+      display: none;
+      margin-top: 10px;
+    }
+    .summary-input {
+      width: 100px;
+      display: inline-block;
+      margin-left: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #f0f0f0;
+      color: #666;
+      font-size: 0.9em;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <img src="https://nikas.gr/wp-content/uploads/2022/10/NIKAS_oval_RGB-1.webp" alt="Λογότυπο της Π.Γ. ΝΙΚΑΣ Α.Β.Ε.Ε." width="145" height="68">
+    <div class="center-links">
+      <a href="homepage.html">Home</a>
+      <a href="logisticspage.html"> Logistics</a>
+      <a href="kpi.html" class = "active">KPIs</a>
+      <a href="RPC.html">RPC</a>
+    </div>
+    <div class="login-button">
+      <a href="loginpage.html">
+        <button>Login</button>
+      </a>
+    </div>
+  </nav>
+
+  <div class="content">
+    <h1>KPIs Παραγωγής <br> Generate Weekly Waste Report</h1>
+    
+    <form onsubmit="return validateForm()">
+      <label for="name">Όνομα:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="date">Ημερομηνία:</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="shift">Βάρδια - Ώρα:</label>
+      <select id="shift" name="shift" required>
+        <option value="">-- Επιλέξτε Βάρδια --</option>
+        <option value="Πρωϊνή (06:00-14:00)">Πρωϊνή (06:00-14:00)</option>
+        <option value="Απογευματινή (14:00-22:00)">Απογευματινή (14:00-22:00)</option>
+        <option value="Νυχτερινή (22:00-06:00)">Νυχτερινή (22:00-06:00)</option>
+      </select>
+
+      <label for="department">Τμήμα:</label>
+      <input type="text" id="department" name="department" value="Παραγωγή" readonly>
+
+      <label for="product">Προϊόν:</label>
+      <input type="text" id="product" name="product" required>
+
+      <label for="line">Γραμμή Παραγωγής:</label>
+      <input type="text" id="line" name="line" required>
+
+      <label for="comments">Σχόλια - Παρατηρήσεις:</label>
+      <textarea id="comments" name="comments" rows="4" required></textarea>
+
+     
+
+      <div id="error" class="error-message">Παρακαλώ συμπληρώστε όλα τα απαιτούμενα πεδία πριν την υποβολή.</div>
+
+      <button type="submit">Υποβολή</button>
+      <button type="button" onclick="saveReport()">Αποθήκευση</button>
+    </form>
+    
+    <a href="kpi.html" style="display: inline-block; margin-top: 20px; padding: 10px 15px; background-color: #f9775b; color: white; text-decoration: none; border-radius: 5px;">Πίσω στις κατηγορίες</a>
+  </div>
+  <script>
+    function validateForm() {
+      const form = document.querySelector('form');
+      const errorDiv = document.getElementById('error');
+
+      if (!form.checkValidity()) {
+        errorDiv.style.display = 'block';
+        return false;
+      } else {
+        errorDiv.style.display = 'none';
+        alert('Τα δεδομένα καταχωρήθηκαν με επιτυχία!');
+        return true;
+      }
+    }
+    function saveReport() {
+      alert('Το report αποθηκεύτηκε με επιτυχία!');
+    }
+    
+  </script>
+</body>
+</html>
